@@ -1,0 +1,59 @@
+<html>
+<head>
+
+  <style>
+  #paragraph-embed {
+    color: #ddd;
+
+  }
+
+
+  </style>
+<title> The simplest HTML example
+</title>
+</head>
+<body>
+<h1> This is  an HTML Page </h1>
+
+
+<button onclick="myFunction()">Click me</button>
+
+<iframe src="http://localhost:3001/@this-is-awesome/embed" width="480" height="480" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+
+</body>
+
+</html>
+
+<script>
+function myFunction() {
+    //const url = 'https://link.paragraph.xyz'
+    const url = 'http://localhost:3001'
+
+    const popup = window.open(url +
+        "/link?redirect=true&publicationName=Catchy%20Publication%20Name&publicationUrl=publication-url-test&tokenAddress=0xA2fFB1D8afCcC04AE5DC0073d36BaEc95c6b5fa9&communityName=Test%20publication%20club%204%20Members&tokenUrl=https%3A%2F%2Fclubs.link%2Fc7eaabd4-3464-422e-abb6-ff8f36564df6&membershipName=Test%20publication%20club%204%20Token",
+        "popup", "width=600,height=600");
+
+
+    //const popup = window.open(url + "/link?publicationName=Test%20test&publicationUrl=test-test-club-pub&tokenAddress=0x7c94194B2009C21CaA67D633cd54109b47DA77A0&communityName=Test%20pub%20club%203%20Members&tokenUrl=https%3A%2F%2Fclubs.link%2Ftest-pub-club-3&membershipName=Test%20pub%20club%203%20Token", "popup", "width=600,height=600");
+    //const popup = window.open(url + "/link?publicationName=The%20simplest%20HTML%20example&publicationUrl=this-simplest-html&tokenAddress=0xe182a80e76b1cf17d0eb018d563823357f1ae296&membershipName=Nifty%20Token&", "popup", "width=600,height=600");
+
+    window.addEventListener("message", function(e) {
+        console.log("Message, neat!", e)
+
+        // wait for child to signal that it's loaded.
+        if ( e.data === "loaded") {
+
+            // send the child a message.
+            //_window.postMessage("Test", iframe.src)
+            popup.postMessage("init", url);
+          } else if (e.data === 'updated') {
+              console.log("Received updated message!")
+
+            }
+    })
+
+}
+
+
+
+</script>
